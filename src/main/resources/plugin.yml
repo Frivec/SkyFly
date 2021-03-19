@@ -1,0 +1,7 @@
+name: SkyFly
+version: 3.0-SNAPSHOT
+author: Frivec
+main: fr.frivec.SkyFly
+depend: [FrivAPI]
+softdepend: [ProtocolLib]
+api-version: 1.13

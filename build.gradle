@@ -1,0 +1,64 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+description 'New version of the skyfly minigame'
+
+group = 'fr.frivec'
+version = '1.0'
+
+sourceCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+configurations {
+    extraLibs
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+repositories {
+
+	mavenLocal()
+	mavenCentral()
+	
+	maven {
+    	url 'https://repo.destroystokyo.com/repository/maven-public/'
+	}
+	
+	maven {
+        url 'https://jitpack.io'
+	}
+	
+    maven { 
+    
+    	url "http://repo.dmulloy2.net/nexus/repository/public/" 
+    
+    }
+    
+	maven{
+    
+    	url "https://repo.inventivetalent.org/content/groups/public/"
+    
+    }
+	
+}
+
+dependencies {
+	
+	compileOnly "org.spigotmc:spigot:1.16.5-R0.1-SNAPSHOT"
+    compileOnly group: 'com.destroystokyo.paper', name: 'paper-api', version: '1.16.5-R0.1-SNAPSHOT'
+	
+}
+
+jar {
+    jar.setDestinationDir(new File("C:/Users/antoi/Desktop/Developpement/Minecraft/Serveurs/Serveurs_Spigot/Serveur_1.15.2/plugins"))
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+jar.setArchiveName("SkyFlyV3.jar")
